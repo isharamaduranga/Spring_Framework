@@ -9,9 +9,7 @@
 package lk.ijse.spring;
 
 import lk.ijse.spring.config.AppConfig;
-import lk.ijse.spring.pojo.BasicDataSource;
-import lk.ijse.spring.pojo.DBConnection;
-import lk.ijse.spring.pojo.SpringBean;
+import lk.ijse.spring.pojo.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class AppInitializer {
@@ -47,6 +45,15 @@ public class AppInitializer {
         System.out.println(basicDataSource);
         basicDataSource.AccsesPool();
 
+        System.out.println("================================================");
+
+        ItemController item = (ItemController) ctx.getBean("item");
+        System.out.println(item);
+
+        System.out.println("================================================");
+        BeanTwo two = (BeanTwo) ctx.getBean("bnTwo");
+        two.beenTwoMethod();
+        System.out.println(two);
 
         ctx.close();
 

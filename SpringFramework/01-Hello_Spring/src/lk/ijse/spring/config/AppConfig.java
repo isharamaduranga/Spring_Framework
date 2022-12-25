@@ -9,6 +9,7 @@
 package lk.ijse.spring.config;
 
 import lk.ijse.spring.pojo.BasicDataSource;
+import lk.ijse.spring.pojo.BeanTwo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,10 @@ public class AppConfig {
     @Bean
     public BasicDataSource  basicDataSource(){
         return new BasicDataSource();
+    }
+    @Bean(name = "bnTwo")// change the default id
+    public BeanTwo beanTwo(){
+        return new BeanTwo();
     }
 
 }
