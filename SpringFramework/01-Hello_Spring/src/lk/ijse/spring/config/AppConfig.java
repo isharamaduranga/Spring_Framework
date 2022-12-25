@@ -26,7 +26,9 @@ public class AppConfig {
     public BasicDataSource  basicDataSource(){
         return new BasicDataSource();
     }
+
     @Bean(name = "bnTwo")// change the default id
+
     public BeanTwo beanTwo(){
         return new BeanTwo();
     }
