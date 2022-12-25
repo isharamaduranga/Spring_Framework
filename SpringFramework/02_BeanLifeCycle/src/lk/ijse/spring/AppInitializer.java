@@ -9,17 +9,38 @@
 package lk.ijse.spring;
 
 import lk.ijse.spring.config.AppConfig;
+import lk.ijse.spring.pojo.SpringBeanOne;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@ComponentScan(basePackages = "lk.ijse.spring")
+
 public class AppInitializer {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(AppConfig.class);
         ctx.refresh();
-        ctx.close();
+
+        /**  Let's Request Spring bean one from container */
+        SpringBeanOne bean = ctx.getBean(SpringBeanOne.class);
+        System.out.println(bean);
+
+
+        /** Hooking Process  */
+
+  /*      Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ctx.close();
+            }
+        }));*/
+
+        /** Spring Alternative for the above Hooking Process  */
+
+        // context will be closed just before jvm shutdown
+        ctx.registerShutdownHook();
+
+        // so you can request beans anywhere without hesitation
+        SpringBeanOne bean1 = ctx.getBean(SpringBeanOne.class);
+        System.out.println(bean1);
+
     }
 }
