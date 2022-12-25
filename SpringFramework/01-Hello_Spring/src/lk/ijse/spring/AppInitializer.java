@@ -39,11 +39,12 @@ public class AppInitializer {
         BasicDataSource bean2 = ctx.getBean(BasicDataSource.class);
         BasicDataSource bean3 = ctx.getBean(BasicDataSource.class);
         System.out.println(bean2);
-        System.out.println(bean3  );
+        System.out.println(bean3);
         bean2.AccsesPool();
 
         System.out.println("================================================");
         BasicDataSource basicDataSource = (BasicDataSource) ctx.getBean("basicDataSource");
+        System.out.println(basicDataSource);
         basicDataSource.AccsesPool();
 
 
