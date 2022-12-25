@@ -19,9 +19,12 @@ public class AppInitializer {
         ctx.register(AppConfig.class);
         ctx.refresh();
 
-        SpringBean bean = ctx.getBean(SpringBean.class);
-        bean.test();
-        System.out.println(bean);
+        SpringBean bean1 = ctx.getBean(SpringBean.class);
+        SpringBean bean2 = ctx.getBean(SpringBean.class);
+        bean1.test();
+        System.out.println(bean1);
+        System.out.println(bean2);
+
 
         ctx.close();
 
