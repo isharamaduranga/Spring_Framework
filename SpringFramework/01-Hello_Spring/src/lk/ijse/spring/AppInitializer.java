@@ -23,6 +23,8 @@ public class AppInitializer {
         bean1.test();
         System.out.println(bean1);
 
+        System.out.println("================================================");
+
         /** Bean id is(ID ---> @Component) : springBean (get Class Name and first letter simple and any others same as before..)  */
         SpringBean beanForID = (SpringBean) ctx.getBean("springBean");
         beanForID.test();
@@ -51,14 +53,18 @@ public class AppInitializer {
 
         System.out.println("================================================");
 
+
+        /** (ID ---> @Component) We can use id when changed bean  id if we want...*/
         ItemController item = (ItemController) ctx.getBean("item");
         System.out.println(item);
 
         System.out.println("================================================");
+
+        /**(ID ---> @Bean) We can use id when changed bean id use @Bean(name = "****") Configuration Class which related method  */
         BeanTwo two = (BeanTwo) ctx.getBean("bnTwo");
         two.beenTwoMethod();
         System.out.println(two);
-
+        System.out.println("================================================");
         ctx.close();
 
 
