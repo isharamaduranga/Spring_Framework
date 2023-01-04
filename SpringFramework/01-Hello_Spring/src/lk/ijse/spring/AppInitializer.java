@@ -23,6 +23,7 @@ public class AppInitializer {
         bean1.test();
         System.out.println(bean1);
 
+        /** Bean id is(ID ---> @Component) : springBean (get Class Name and first letter simple and any others same as before..)  */
         SpringBean beanForID = (SpringBean) ctx.getBean("springBean");
         beanForID.test();
 
@@ -40,7 +41,10 @@ public class AppInitializer {
         System.out.println(bean3);
         bean2.AccsesPool();
 
+
         System.out.println("================================================");
+
+        /** Bean id is(ID ---> @Bean) : basicDataSource (get Configuration Class which related method Name )  */
         BasicDataSource basicDataSource = (BasicDataSource) ctx.getBean("basicDataSource");
         System.out.println(basicDataSource);
         basicDataSource.AccsesPool();
