@@ -19,18 +19,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class A implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
 
-
+    @Autowired
+    private BSuper m ;
 
      /**
       *  @Autowired
-      * private BSuper m ; *///property Injection..
+      * private BSuper m ; */   //property Injection..
 
-    @Autowired   //Constructor Injection
+
+   /** @Autowired
+    *
     private BSuper m;
     public A(BSuper bb)  {
         this.m=bb;
         System.out.println("Instantiated : A");
-    }
+
+    }*/                         //Constructor Injection
+
+ /**  @Autowired
+    public void setInjection(BSuper bb){
+         this.m=bb;
+   }*/                          //Setter Method Injection
+
 
     public void sendRequestB(){
         m.callMe();
