@@ -17,7 +17,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class A implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
+public class A implements /*DI,*/ BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
 
     @Autowired
     private BSuper m ;
@@ -40,6 +40,14 @@ public class A implements BeanNameAware, BeanFactoryAware, ApplicationContextAwa
     public void setInjection(BSuper bb){
          this.m=bb;
    }*/                          //Setter Method Injection
+
+
+ /**@Autowired
+ @Override
+    public void setInjection(BSuper bb) {
+     this.m=bb;
+ }   */                         // Interface  Injection
+
 
 
     public void sendRequestB(){
