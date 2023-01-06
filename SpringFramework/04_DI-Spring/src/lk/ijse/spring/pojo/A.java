@@ -13,7 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class A {
 
+    private B b;
+
     public A() {
-        System.out.println("A : Instantiated..");
+        System.out.println("Instantiated : A");
+    }
+
+    public void sendRequestB(){
+        b.callMe();
     }
 }

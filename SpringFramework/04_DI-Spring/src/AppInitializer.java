@@ -1,4 +1,5 @@
 import lk.ijse.spring.config.AppConfig;
+import lk.ijse.spring.pojo.A;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -15,6 +16,8 @@ public class AppInitializer {
         ctx.register(AppConfig.class);
         ctx.refresh();
 
+        A beanA = ctx.getBean(A.class);
+        beanA.sendRequestB();
 
 
         ctx.registerShutdownHook();
