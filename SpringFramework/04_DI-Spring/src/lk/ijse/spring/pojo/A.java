@@ -11,6 +11,7 @@ package lk.ijse.spring.pojo;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -19,14 +20,15 @@ import org.springframework.stereotype.Component;
 public class A implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
 
     @Autowired
-    private BSuper b ;
+    @Qualifier("c")
+    private BSuper m ; //property Injection..
 
     public A()  {
         System.out.println("Instantiated : A");
     }
 
     public void sendRequestB(){
-        b.callMe();
+        m.callMe();
     }
 
 
