@@ -24,7 +24,7 @@ public class A implements /*DI,*/ BeanNameAware, BeanFactoryAware, ApplicationCo
 
      /**
       *  @Autowired
-      * private BSuper m ; */   //property Injection..
+      * private BSuper m ; */   //property Injection
 
 
    /** @Autowired
