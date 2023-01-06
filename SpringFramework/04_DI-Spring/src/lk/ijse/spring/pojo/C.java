@@ -2,7 +2,7 @@
  * @author : Ishara Maduarnga
  * Project Name: SpringFramework
  * Date        : 1/6/2023
- * Time        : 6:25 PM
+ * Time        : 8:00 PM
  * Year        : 2023
  */
 
@@ -15,39 +15,40 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class B implements BSuper, BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
+public class C implements BSuper, BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
 
-    public B() {
-        System.out.println("Instantiated : B");
+    public C() {
+        System.out.println("C : Instantiated ");
     }
 
     @Override
-    public void callMe(){
-        System.out.println("B Call Me Method Invoked ");
+    public void callMe() {
+        System.out.println("C Call Me Method Invoked");
     }
 
     @Override
     public void setBeanName(String name) {
-        System.out.println("Bean B :Bean Name Aware");
+        System.out.println("Bean C :Bean Name Aware");
     }
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("Bean B :Bean Factory Aware");
+        System.out.println("Bean C :Bean Factory Aware");
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("Bean B :Application Context Aware");
+        System.out.println("Bean C :Application Context Aware");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("Bean B : Initializing Bean(Ready Bean)");
+        System.out.println("Bean C : Initializing Bean(Ready Bean)");
     }
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("Bean B  : Disposable Bean(destroy Bean)");
+        System.out.println("Bean C : Disposable Bean(destroy Bean)");
     }
+
 }
