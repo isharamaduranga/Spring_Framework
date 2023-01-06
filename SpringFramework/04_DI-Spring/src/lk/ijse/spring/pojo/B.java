@@ -15,10 +15,13 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class B implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
+public class B implements BSuper, BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
+
     public B() {
         System.out.println("Instantiated : B");
     }
+
+    @Override
     public void callMe(){
         System.out.println("Received a Call A");
     }
@@ -45,6 +48,6 @@ public class B implements BeanNameAware, BeanFactoryAware, ApplicationContextAwa
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("Bean B : Disposable Bean(destroy Bean)");
+        System.out.println("Bean B  : Disposable Bean(destroy Bean)");
     }
 }
