@@ -11,9 +11,11 @@ package lk.ijse.spring.config;
 import lk.ijse.spring.pojo.SpringBeanOne;
 import lk.ijse.spring.pojo.SpringBeanThree;
 import lk.ijse.spring.pojo.SpringBeanTwo;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Configuration
@@ -23,11 +25,18 @@ public class AppConfig {
 
     }
 
-    @Bean
-    public SpringBeanTwo beanTwo(){
+    /**  Full Mode - Spring  */
+  /*
 
-        SpringBeanThree b1 =  beanThree();
+   @Bean
+    public SpringBeanTwo beanTwo(){
+        //  inter Bean dependencies.
+        SpringBeanThree b1 =  beanThree(); *//** Inter Bean dependency invocation.  *//*
+        SpringBeanThree b2 =  beanThree(); *//** Inter Bean dependency invocation.  *//*
         System.out.println(b1);
+        System.out.println(b2);
+
+        System.out.println("====================================================");
         return new SpringBeanTwo();
 
     }
@@ -36,5 +45,7 @@ public class AppConfig {
     public SpringBeanThree beanThree(){
         return new SpringBeanThree();
     }
+
+    */
 
 }

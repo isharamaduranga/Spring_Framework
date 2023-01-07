@@ -12,6 +12,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,10 +40,33 @@ public class SpringBeanOne implements BeanNameAware, BeanFactoryAware, Applicati
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("SpringBeanOne : Initializing Bean");
+        System.out.println("====================================================");
     }
+
+
+    /**  Light Mode - Spring  */
+    @Bean
+    public SpringBeanTwo beanTwo(){
+        //  inter Bean dependencies.
+        SpringBeanThree b1 =  beanThree();  /** Inter Bean dependency invocation.  */
+        SpringBeanThree b2 =  beanThree();  /** Inter Bean dependency invocation.  */
+        System.out.println(b1);
+        System.out.println(b2);
+        return new SpringBeanTwo();
+
+    }
+
+    @Bean
+    public SpringBeanThree beanThree(){
+        return new SpringBeanThree();
+    }
+
+
 
     @Override
     public void destroy() throws Exception {
         System.out.println("SpringBeanOne : Destroyed Bean");
     }
+
+
 }
