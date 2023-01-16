@@ -7,6 +7,12 @@
       <module fileurl="file://$PROJECT_DIR$/SpringFramework/03_Bean_Scopes/03_Bean_Scopes.iml" filepath="$PROJECT_DIR$/SpringFramework/03_Bean_Scopes/03_Bean_Scopes.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringFramework/04_DI-Spring/04_DI-Spring.iml" filepath="$PROJECT_DIR$/SpringFramework/04_DI-Spring/04_DI-Spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringFramework/05_FullModeVsLightMode/05_FullModeVsLightMode.iml" filepath="$PROJECT_DIR$/SpringFramework/05_FullModeVsLightMode/05_FullModeVsLightMode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringFramework/06_Configurations/06_Configurations.iml" filepath="$PROJECT_DIR$/SpringFramework/06_Configurations/06_Configurations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringFramework/07_RuntimeValueInjection/07_RuntimeValueInjection.iml" filepath="$PROJECT_DIR$/SpringFramework/07_RuntimeValueInjection/07_RuntimeValueInjection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringFramework/08_SpringEnvironment/08_SpringEnvironment.iml" filepath="$PROJECT_DIR$/SpringFramework/08_SpringEnvironment/08_SpringEnvironment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringFramework/09_Spring-MVC/09_Spring-MVC.iml" filepath="$PROJECT_DIR$/SpringFramework/09_Spring-MVC/09_Spring-MVC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringFramework/10_Controllers/10_Controllers.iml" filepath="$PROJECT_DIR$/SpringFramework/10_Controllers/10_Controllers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringFramework/11_Rest-Controllers/11_Rest-Controllers.iml" filepath="$PROJECT_DIR$/SpringFramework/11_Rest-Controllers/11_Rest-Controllers.iml" />
     </modules>
   </component>
 </project>
