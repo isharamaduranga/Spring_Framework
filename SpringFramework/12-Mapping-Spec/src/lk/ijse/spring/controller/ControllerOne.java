@@ -20,11 +20,11 @@ public class ControllerOne {
         return "GET Method Invoked";
     }
 
-    @GetMapping
+ /*   @GetMapping
     public String  testOne_Second(){
         System.out.println("Test One second Get Method Invoking");
         return "GET Method Invoked -second";
-    }
+    }*/
 
 
     @PostMapping
