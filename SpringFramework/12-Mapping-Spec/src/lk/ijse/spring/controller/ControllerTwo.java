@@ -51,6 +51,10 @@ public class ControllerTwo {
         return "Get Mapping Six Invoked : "+id+" "+name;
     }
 
-
+    // EG: http://localhost:8080/mappingspec/two/name/ABCD/C001
+    @GetMapping(path="/name/{name:[A-Z]{4}}/{id:[C]{1}[0-9]{3}}")
+    public String methodSeven(@PathVariable  String name,@PathVariable  String  id){
+        return "Get Mapping Seven Invoked : "+id+" : "+name;
+    }
 
 }
