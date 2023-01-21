@@ -10,7 +10,7 @@ package lk.ijse.spring.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
+//configuration class
 @Configuration
 @ComponentScan(basePackages = "lk.ijse.spring")
 public class AppConfig {
