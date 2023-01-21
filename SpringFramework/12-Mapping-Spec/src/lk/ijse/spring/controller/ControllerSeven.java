@@ -1,8 +1,8 @@
 /**
  * @author : Ishara Maduarnga
- * Project Name: SpringFramework
- * Date        : 1/17/2023
- * Time        : 10:57 AM
+ * Project Name: Spring_fw
+ * Date        : 1/21/2023
+ * Time        : 1:37 PM
  * Year        : 2023
  */
 
@@ -15,17 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/seven")
 public class ControllerSeven {
-    //
-    // EG :
-    @GetMapping()
+
+    //mapping with query parameters
+
+
+    @GetMapping(consumes = {"application/json"} )
     public String testOne(){
-        return "Test One  Method";
+        return "Test One Method >> ";
     }
 
-    //
-    // EG
-    @GetMapping()
+
+    @GetMapping(consumes = {"text/html"})
     public String testTwo(){
-        return "Test Two  Method";
+        return "Test Two Method >> ";
     }
+
 }
