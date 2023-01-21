@@ -22,7 +22,7 @@ public class ControllerEight {
         return "Test One Invoked >> ";
     }
 
-    @GetMapping(produces = {"text/html"},consumes = "application/json")
+    @GetMapping(produces = {"text/html"})
     public String testTwo(){
         return "Test Two Invoked >> ";
     }
