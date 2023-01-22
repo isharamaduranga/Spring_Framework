@@ -14,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/SpringFramework/10_Controllers/10_Controllers.iml" filepath="$PROJECT_DIR$/SpringFramework/10_Controllers/10_Controllers.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringFramework/11_Rest-Controllers/11_Rest-Controllers.iml" filepath="$PROJECT_DIR$/SpringFramework/11_Rest-Controllers/11_Rest-Controllers.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringFramework/12-Mapping-Spec/12-Mapping-Spec.iml" filepath="$PROJECT_DIR$/SpringFramework/12-Mapping-Spec/12-Mapping-Spec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringFramework/13_SpringWithMaven/13_SpringWithMaven.iml" filepath="$PROJECT_DIR$/SpringFramework/13_SpringWithMaven/13_SpringWithMaven.iml" />
     </modules>
   </component>
 </project>
