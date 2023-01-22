@@ -22,5 +22,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="spring-aop-5.3.9-javadoc" level="project" />
     <orderEntry type="library" exported="" name="Tomcat 8.5.83" level="application_server_libraries" />
+    <orderEntry type="library" name="jackson-annotations-2.14.1" level="project" />
   </component>
 </module>

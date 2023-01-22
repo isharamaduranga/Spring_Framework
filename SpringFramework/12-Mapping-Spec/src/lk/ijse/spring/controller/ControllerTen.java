@@ -9,6 +9,7 @@
 package lk.ijse.spring.controller;
 
 import lk.ijse.spring.Dto.CustomerDTO;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerTen {
 
     @PostMapping
-    public  String  testTwo(CustomerDTO dto){
-        return "test Two invoke post mapping  "+dto.toString();
+    public  String  testTwo(@ModelAttribute CustomerDTO dto){
+        return "Test Two invoke post mapping  "+dto.toString();
     }
 }
