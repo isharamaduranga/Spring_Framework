@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap_Pos-System</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!--link Bootstrap Framework-->
+    <link rel="stylesheet" href="assests/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/pos_styles.css">
+    <link href="icons/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-primary navColor">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fw-bold" href="index.html">
+                <img src="assests/images/logo.jpg" alt="Logo" width="40" height="40"
+                     class="d-inline-block align-text-center">
+                POS-SYSTEM
+            </a>
+            <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul id="ul-list" class="navbar-nav  me-auto mb-2 mb-lg-0 text-white">
+                    <li class="nav-item fs-5 ">
+                        <a aria-current="page" class="nav-link text-white" href="index.html" id="linkHome">Home</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a id="#linkCustomer" class="nav-link text-white table-hover " href="customer_form.html">Customers</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="item_form.html" id="linkItem">Items</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="place-order_form.html" id="linkOrder">Orders</a>
+                    </li>
+                    <li class="nav-item fs-5">
+                        <a class="nav-link text-white" href="order_details_form.html" id="linkPurchaseOrder">Order-Details</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section id="order" style="height: 85vh" class="bg-white">
+    <section class="container-fluid mt-2">
+        <div style="height: 8px; text-align: center">
+            <h2 class="bg-secondary border border-2 border-secondary text-light"
+                style="border-radius: 25px; font-family: 'poppins', sans-serif"> P L A C E - O R D E R S </h2>
+        </div>
+    </section>
+    <div class="container-fluid bg-white mt-5">
+
+        <div class="mt-5">
+            <div class="row ">
+                <div class="col ms-2 " style="background-color: rgba(239,228,168,0.44); border-radius: 30px;">
+                    <section class="container">
+                        <form>
+                            <div class="row">
+                                <div class="bg-warning text-white text-center mb-3 p-2"
+                                     style="border-radius: 25px;"><h5>Invoice Details</h5></div>
+
+                                <div class="col">
+                                    Order ID:
+                                    <form>
+                                        <input class="form-control text-primary text-lg-center"
+                                               style="font-weight: bold " id="txtOrderId" type="button">
+                                        <span class="control-error_item" id="lblOrderID"></span>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    Order Date:
+                                    <form>
+                                        <input class="form-control" id="txtDate" type="date">
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Customer:
+                                    <select class="form-control" id="selectCusID"></select>
+                                </div>
+                                <div class="col">
+                                    Customer ID:
+                                    <form>
+                                        <input class="form-control" id="orderCustomerID">
+                                    </form>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Salary:
+                                    <form>
+                                        <input class="form-control" id="orderCustomerSalary" type="text">
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    Name:
+                                    <form>
+                                        <input class="form-control " id="orderCustomerName" type="text">
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Address:
+                                    <form>
+                                        <input class="form-control " id="orderCustomerAddress" type="text">
+                                    </form>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                </div>
+
+                <div class="col ms-2 " style="background-color: rgba(152,227,152,0.34); border-radius: 30px;">
+                    <section class="container">
+                        <form>
+                            <div class="row">
+                                <div class="bg-success text-white text-center mb-3 p-2"
+                                     style="border-radius: 25px;"><h5>Item Select</h5></div>
+
+                                <div class="col">
+                                    Item:
+                                    <select class="form-control" id="selectItemCode"></select>
+                                </div>
+                                <div class="col">
+                                    Item Code:
+                                    <form>
+                                        <input class="form-control " id="txtItemCode" type="text">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Item Name:
+                                    <form>
+                                        <input class="form-control " id="txtItemDescription" type="text">
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    Item Price:
+                                    <form>
+                                        <input class="form-control " id="txtItemPrice" type="text">
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    QtyOnH:
+                                    <form>
+                                        <input class="form-control " id="txtQTYOnHand" type="text">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Order QTY:
+                                    <form>
+                                        <input class="form-control " id="txtQty" type="number">
+                                        <span class="control-error_item" id="lblCheckQty"></span>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col button">
+                                    <button class="btn btn-primary mt-5 text-center" id="btnAddToTable" type="button">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                </div>
+
+                <div class="col ms-2 me-2" style="background-color: rgba(234,182,186,0.25); border-radius: 30px;">
+                    <div class="bg-danger text-white text-center mb-3 p-2"
+                         style="border-radius: 25px;"><h5>Payment Details</h5></div>
+
+                    <h4 class="text-dark p-2" id="total">Total : <span>0.00</span></h4>
+                    <h4 class="text-danger p-2" id="subtotal">Sub Total : <span id="subtot">0.00</span></h4>
+                    <section class="container">
+                        <div class="row">
+                            <div class="col">
+                                Cash:
+                                <form>
+                                    <input class="form-control " id="txtCash" type="text">
+                                    <span class="control-error_item" id="lblCheckCash"></span>
+                                </form>
+                            </div>
+                            <div class="col">
+                                Discount:
+                                <form>
+                                    <input class="form-control " id="txtDiscount" type="text">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                Balance:
+                                <form>
+                                    <input class="form-control " id="txtBalance" type="text">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col button">
+                                <button class="btn btn-outline-success mt-4 mb-2" id="btnSubmitOrder" type="button">
+                                    Purchase-Order
+                                </button>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+                <div class="mt-2" style="height: 265px; overflow-x: scroll">
+
+                    <table class="table table-bordered text-white">
+                        <thead class="bg-primary">
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-light text-dark" id="orderTable">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Import js for bootstrap-->
+<script src="assests/jquery/jquery-3.6.1.min.js"></script>
+<script src="assests/js/bootstrap.min.js"></script>
+<script src="model/cart.js"></script>
+<script>
+
+    let baseUrl = "http://localhost:8080/posbackend/";
+
+    /** Functions of running when start the  program...*/
+    loadAllItems();
+    loadAllCustomers();
+    setDates();
+    searchCustomer();
+    generateOrderID();
+    $("#btnSubmitOrder").attr('disabled', true);
+
+    /** Define the Cart Array */
+    var cart = [];
+
+    /** Function of Load All Items with combobox */
+    function loadAllItems() {
+
+        $("#selectItemCode").append(`<option>Select Item</option>`);
+        $.ajax({
+            url: baseUrl + "item",
+            success: function (res) {
+                for (let c of res.data) {
+                    let code = c.code;
+                    $("#selectItemCode").append(`<option value="${code}">${code}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    /** Function of Load All Items with combobox */
+    function loadAllCustomers() {
+        $("#selectCusID").append(`<option>Select Customer</option>`);
+        $.ajax({
+            url: baseUrl + "customer",
+            dataType: "json",
+            success: function (resp) {
+                console.log(resp);
+                for (let cus of resp.data) {
+                    $("#selectCusID").append(`<option value="${cus.id}">${cus.id}</option>`);
+                }
+            }
+        });
+    }
+
+    /** Function of Load Current date */
+    function setDates() {
+        let date = new Date().toJSON().split("T")[0];
+        $("#txtDate").val(date);
+    }
+
+    /** Function of search  customer by Customer Id */
+    function searchCustomer(cusID) {
+        let response = "";
+        $.ajax({
+            url: baseUrl + "customer",
+            dataType: "json",
+            async: false,
+            success: function (resp) {
+                response = resp.data.filter((c) => {
+                    return c.id == cusID;
+                });
+            }
+        });
+        return response;
+    }
+
+    /** Function of search Items by Item Code */
+    function searchItem(code) {
+        let response = "";
+        $.ajax({
+            url: baseUrl + "item",
+            dataType: "json",
+            async: false,
+            success: function (resp) {
+                response = resp.data.filter((i) => {
+                    return i.code == code;
+                });
+            }
+        });
+        return response;
+        console.log(response);
+    }
+
+    /** Function of Set Customer Data to fields after the Search */
+    $("#selectCusID").change(function () {
+        let cusID = $("#selectCusID").val();
+        $("#orderCustomerID").val(cusID);
+        let res = searchCustomer(cusID);
+        if (res.length > 0) {
+            $("#orderCustomerName").val(res[0].name);
+            $("#orderCustomerSalary").val(res[0].salary);
+            $("#orderCustomerAddress").val(res[0].address);
+        }
+        textFieldColorChange_customer();
+    });
+
+    /** Function of Set Items Data to fields after the Search */
+    $("#selectItemCode").change(function () {
+        let code = $("#selectItemCode").val();
+        $("#txtItemCode").val(code);
+        let res = searchItem(code);
+        if (res.length > 0) {
+            $("#txtItemDescription").val(res[0].description);
+            $("#txtItemPrice").val(res[0].unitPrice);
+            $("#txtQTYOnHand").val(res[0].qtyOnHand);
+        }
+        textFieldColorChange_Item();
+    });
+
+    /** Function of Add To Table(Cart) Input data */
+    $("#btnAddToTable").click(function () {
+        let qtyOnHand = parseInt($("#txtQTYOnHand").val());
+        let orderQty = parseInt($("#txtQty").val());
+
+        if ($("#txtQty").val() != "") {
+
+            if (qtyOnHand < orderQty) {
+                alert("This Item Not Available for this Quantity !!!")
+                $("#txtQty").val("")
+            } else {
+                updateQty();
+                addToCart();
+                loadAllCart();
+                calculateTotal();
+            }
+        } else {
+            alert("please Enter Order Quantity..");
+        }
+    });
+
+    /** function of add To Cart */
+    function addToCart() {
+
+        let code = $("#selectItemCode").val();
+        let description = $("#txtItemDescription").val();
+        let itemPrice = $("#txtItemPrice").val();
+        let buyQty = $("#txtQty").val();
+        let total = parseFloat(itemPrice) * parseFloat(buyQty);
+
+        for (let cartElement of cart) {
+            if (cartElement.getCode() == code) {
+                var newQty = +cartElement.getBuyQty() + +buyQty;
+                let newTotal = itemPrice * newQty;
+
+                cartElement.setBuyQty(newQty);
+                cartElement.setTotal(newTotal);
+                return;
+            }
+        }
+        let cartOrder = new cartModel(code, description, itemPrice, buyQty, total);
+        cart.push(cartOrder);
+
+        $("#txtBalance,#txtCash,#txtDiscount").val("");
+    }
+
+    /** function of load all data (included to search same oid and updated) */
+    function loadAllCart() {
+        $("#orderTable").empty();
+        for (let cartItm of cart) {
+
+            var cartRow = `<tr><td>${cartItm.getCode()}</td><td>${cartItm.getDescription()}</td><td>${cartItm.getItemPrice()}</td><td>${cartItm.getBuyQty()}</td><td>${cartItm.getTotal()}</td></tr>`
+
+            $("#orderTable").append(cartRow);
+        }
+    }
+
+    /** function of find same order id and when add data & updated qty with already added oder..*/
+    function updateQty() {
+        let qtyOnHand = $('#txtQTYOnHand').val();
+        let order_qty = $('#txtQty').val();
+        let newQtyValue = qtyOnHand - order_qty;
+
+        $("#itemTable").empty();
+        $.ajax({
+            url: baseUrl + "item",
+            dataType: "json",
+            success: function (resp) {
+                for (let itm of resp.data) {
+
+                    if ($("#selectItemCode").val() === itm.code) {
+
+                        setItemQty(newQtyValue);
+                    }
+                }
+            }
+        });
+    }
+
+    /**  Function of send to request to updated new quantity and set updated quantity related input field  */
+    function setItemQty(newQty) {
+        let itemCode = $('#selectItemCode').val();
+        let itemName = $('#txtItemDescription').val();
+        $("#txtQTYOnHand").val(newQty);
+        let itemQty = $("#txtQTYOnHand").val();
+        let itemPrice = $('#txtItemPrice').val();
+        //create js object for send to json object
+        let item = {
+            code: itemCode,
+            description: itemName,
+            qtyOnHand: itemQty,
+            unitPrice: itemPrice
+        }
+        $.ajax({
+            url: baseUrl + "item",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(item),
+            dataType: "json",
+            success: function (resp) {
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
+
+    /** function of txtCash button keyup event logic... */
+    $('#txtCash').on('keyup', function (event) {
+
+        if (event.key == "Enter") {
+            event.preventDefault();
+        }
+
+        let cash = parseFloat($('#txtCash').val());
+        let tot = $('#total>span').text();
+
+        if (cash > tot) {
+            let total = parseFloat($('#subtot').text());
+            let balance = cash - total;
+
+            $('#txtBalance').val(balance);
+
+            Span_BorderCssChange_Default($('#txtCash'), "");
+
+            $("#btnSubmitOrder").attr('disabled', false);
+        } else {
+
+            Span_BorderCssChange_Error($('#txtCash'), "Insufficient Credit Balance");
+
+        }
+    });
+
+    /** function of Calculate Total of cart items.. */
+    function calculateTotal() {
+        let tot = 0;
+        $('#orderTable>tr').each(function () {
+            tot = tot + parseFloat($($(this).children().get(4)).text());
+            $('#total>span').text(tot).append('.00');
+
+            if ($("#txtDiscount").val() === "") {
+
+                $('#subtotal>span').text(tot);
+            }
+        });
+        tempTot = tot;
+    }
+
+    /** function of Calculate Discount of cart items.. */
+    $('#txtDiscount').on('keyup', function () {
+        if ($("#txtDiscount").val() === "") {
+            $('#subtotal>span').text('0.00');
+        } else {
+            let tot = parseFloat(tempTot);
+            let dis = tot / 100 * parseFloat($("#txtDiscount").val());
+
+            $('#subtotal>span').text(tot - dis);
+
+            let cash = parseInt($("#txtCash").val());
+            let subTot = parseInt($("#subtot").text());
+            $("#txtBalance").val(cash - subTot);
+        }
+    });
+
+/*
+    /!** function of txtQty button keyup,keydown event logic... *!/
+    $("#txtQty").on('keyup keydown', function () {
+        let qhd = $("#txtQTYOnHand").val();
+        let typeQty = $("#txtQty").val();
+        if (typeQty > qhd) {
+
+            Span_BorderCssChange_Error($('#txtQty'), "Please  Enter a Amount lower than: " + typeQty + "");
+        } else {
+            Span_BorderCssChange_Default($('#txtQty'), "");
+        }
+    })
+*/
+
+    /** function of Purchase Order logics. */
+    $("#btnSubmitOrder").click(function () {
+        let orderID = $("#txtOrderId").val();
+        let customerID = $("#orderCustomerID").val();
+        let orderDate = $("#txtDate").val();
+        let orderD = getItemDetails();
+
+        let ob = {
+            oid: orderID,
+            date: orderDate,
+            cusID: customerID,
+            orderDetails: orderD
+        }
+
+        //send request
+        $.ajax({
+            url: baseUrl + "purchase",
+            method: "post",
+            dataType: "json",
+            data: JSON.stringify(ob),
+            contentType: "application/json",
+            success: function (resp) {
+
+                alert(resp.message);
+                //call generate order id
+                generateOrderID();
+
+                //functionalities of clear cart details and clear cart array after the Purchase order
+                cart.splice(0, cart.length);
+                $('#orderTable').empty();
+                $("#btnSubmitOrder").attr('disabled', true);
+                $("#total>span,#subtot").text("00");
+                //load customer and items ids with combo box
+                loadAllCustomers();
+                loadAllItems();
+
+                $("#txtItemCode,#txtItemDescription,#txtQTYOnHand,#txtQty,#orderCustomerID,#orderCustomerAddress,#orderCustomerName,#orderCustomerSalary,#txtCash,#txtBalance,#txtDiscount").val("");
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+
+    });
+
+    /** function of get Item Details... */
+    function getItemDetails() {
+        let rows = $("#orderTable").children().length;
+        var array = [];
+        for (let i = 0; i < rows; i++) {
+            let itCode = $("#orderTable").children().eq(i).children(":eq(0)").text();
+            let itQty = $("#orderTable").children().eq(i).children(":eq(3)").text();
+            let itPrice = $("#orderTable").children().eq(i).children(":eq(2)").text();
+            array.push({code: itCode, qty: itQty, price: itPrice});
+        }
+        return array;
+    }
+
+    /** function of change Colors with customer fields . */
+    function textFieldColorChange_customer() {
+        let cusId = $('#selectCusID').val();
+        if (cusId === 'Select Customer') {
+
+            $("#orderCustomerID,#orderCustomerName,#orderCustomerSalary,#orderCustomerAddress")
+                .css("border", "2px solid #ced4da");
+            //clear fields
+            clearSetDetails($("#orderCustomerID"), $("#orderCustomerName"), $("#orderCustomerSalary"), $("#orderCustomerAddress"));
+        } else {
+            $("#orderCustomerID,#orderCustomerName,#orderCustomerSalary,#orderCustomerAddress")
+                .css("border", "2px solid limegreen");
+        }
+    }
+
+    /** function of change Colors with Item fields . */
+    function textFieldColorChange_Item() {
+        let itemCode = $('#selectItemCode').val();
+
+        if (itemCode === "Select Item") {
+            $("#txtItemCode,#txtItemDescription,#txtItemPrice,#txtQTYOnHand").css("border", "2px solid #ced4da");
+            //clear fields
+            clearSetDetails($("#txtItemCode"), $("#txtItemDescription"), $("#txtItemPrice"), $("#txtQTYOnHand"));
+        } else {
+            $("#txtItemCode,#txtItemDescription,#txtItemPrice,#txtQTYOnHand").css("border", "2px solid limegreen");
+
+        }
+    }
+
+    /** Error css changer */
+    function Span_BorderCssChange_Error(field, massage) {
+        field.css('border', '2px solid red');
+        field.parent().children('span').text(massage);
+    }
+
+    /** Default css changer */
+    function Span_BorderCssChange_Default(field, massage) {
+        field.css('border', '2px solid lime');
+        field.parent().children('span').text(massage);
+    }
+
+    $('#txtQty').on('keyup', function () {
+        orderQtyColourChange();
+    });
+
+    /** function of when change Colors with customer fields . */
+    function orderQtyColourChange() {
+        let qHand = parseInt($("#txtQTYOnHand").val());
+        let orQty = parseInt($("#txtQty").val());
+        if (qHand < orQty) {
+
+            Span_BorderCssChange_Error($('#txtQty'), "Please  Enter a Amount lower than: " + orQty + "");
+
+        } else {
+            Span_BorderCssChange_Default($('#txtQty'), "")
+        }
+    }
+
+    /** function of clear Details passed that fields . */
+    function clearSetDetails(param1, param2, param3, param4) {
+        param1.val("");
+        param2.val("");
+        param3.val("");
+        param4.val("");
+    }
+
+    /** function of Auto generate Order id with related field. */
+    function generateOrderID() {
+        try {
+            $.ajax({
+                url: baseUrl + "OrderDetails",
+                dataType: "json",
+                success: function (resp) {
+                    for (let oder of resp.data) {
+                        let lastOId = oder.oid;
+                        let newOId = parseInt(lastOId.substring(4, 7)) + 1;
+                        if (newOId < 10) {
+                            $("#txtOrderId").val("OID-00" + newOId);
+                        } else if (newOId < 100) {
+                            $("#txtOrderId").val("OID-0" + newOId);
+                        } else {
+                            $("#txtOrderId").val("OID-" + newOId);
+                        }
+                    }
+                }
+            });
+
+
+        } catch (e) {
+            $("#txtOrderId").val("OID-001");
+        }
+    }
+
+</script>
+</body>
+</html>
