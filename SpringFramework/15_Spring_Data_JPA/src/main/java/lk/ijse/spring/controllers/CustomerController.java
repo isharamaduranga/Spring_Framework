@@ -10,42 +10,46 @@ package lk.ijse.spring.controllers;
 
 
 import lk.ijse.spring.dto.CustomerDTO;
+import lk.ijse.spring.entity.Customer;
+import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
 @CrossOrigin
 public class CustomerController {
 
+    @Autowired
+    CustomerRepo repo;
+
     @GetMapping
     public ResponseUtil getAllCustomer(){
-        ArrayList<CustomerDTO> allCustomers = new ArrayList<>();
-        allCustomers.add(new CustomerDTO("C00-001","KASUN","GALLE",5000));
-        allCustomers.add(new CustomerDTO("C00-002","NIMAL","COLOMBO",8000));
-        allCustomers.add(new CustomerDTO("C00-003","PASAN","MATHARA",10000));
-        allCustomers.add(new CustomerDTO("C00-004","NIMAL","KANDY",25000));
-
-        return new ResponseUtil("200"," Success.",allCustomers);
+        List<Customer> all = repo.findAll();
+        return new ResponseUtil("200"," Success.",all);
     }
 
     @PostMapping
     public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO cus){
-        System.out.println(cus.toString());
+        Customer customer = new Customer(cus.getId(), cus.getName(), cus.getAddress(), cus.getSalary());
+        repo.save(customer);
         return new ResponseUtil("200",cus.toString() +" Successfully Added..",null);
     }
 
     @PutMapping
     public ResponseUtil updateCustomer(@RequestBody CustomerDTO cus){
-        System.out.println(cus.toString());
+        Customer customer = new Customer(cus.getId(), cus.getName(), cus.getAddress(), cus.getSalary());
+        repo.save(customer);
         return new ResponseUtil("200",cus.toString()+" Successfully Updated..",null);
     }
 
     @DeleteMapping(params = "id")
     public ResponseUtil deleteCustomer(String id){
-        System.out.println(id);
+        repo.deleteById(id);
         return new ResponseUtil("200",id+" Successfully Deleted.!!!",null);
     }
 
