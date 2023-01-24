@@ -10,6 +10,7 @@ package lk.ijse.spring.controllers;
 
 import lk.ijse.spring.dto.ItemDTO;
 import lk.ijse.spring.repo.ItemRepo;
+import lk.ijse.spring.service.ItemService;
 import lk.ijse.spring.service.ItemServiceImpl;
 import lk.ijse.spring.util.ResponseUtil;
 import org.modelmapper.ModelMapper;
@@ -25,7 +26,7 @@ public class ItemController {
 
 
     @Autowired
-    ItemServiceImpl service;
+    ItemService service;
 
     @GetMapping
     public ResponseUtil getAllItem() {
