@@ -31,11 +31,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void addCustomer(CustomerDTO cus) {
+        if (repo.existsById(cus.getId())) {
+            throw new RuntimeException("Customer "+cus.getId()+" Already Exist..!");
+        }
         repo.save(mapper.map(cus, Customer.class));
     }
 
     @Override
     public void deleteCustomer(String id) {
+        if (!repo.existsById(id)) {
+            throw new RuntimeException("Customer "+id+" Not Available to Delete !!!.");
+        }
         repo.deleteById(id);
     }
 
