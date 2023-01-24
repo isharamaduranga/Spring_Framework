@@ -33,18 +33,18 @@ public class ItemController {
     @PostMapping
     public ResponseUtil saveItem(@ModelAttribute ItemDTO itm){
         System.out.println(itm.toString());
-        return new ResponseUtil("200",itm.toString() +" Added",null);
+        return new ResponseUtil("200",itm.toString() +" Successfully Added..",null);
     }
 
     @PutMapping
     public ResponseUtil updateItem(@RequestBody ItemDTO itm){
         System.out.println(itm.toString());
-        return new ResponseUtil("200",itm.toString()+" Updated",null);
+        return new ResponseUtil("200",itm.toString()+" Successfully Updated..",null);
     }
 
     @DeleteMapping(params = "code")
     public ResponseUtil deleteItem(String code){
         System.out.println(code);
-        return new ResponseUtil("200",code+" Deleted.",null);
+        return new ResponseUtil("200",code+" Successfully Deleted.!!",null);
     }
 }

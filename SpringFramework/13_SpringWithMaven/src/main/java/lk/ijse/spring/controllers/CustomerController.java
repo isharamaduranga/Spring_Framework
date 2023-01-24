@@ -34,19 +34,19 @@ public class CustomerController {
     @PostMapping
     public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO cus){
         System.out.println(cus.toString());
-        return new ResponseUtil("200",cus.toString() +" Added",null);
+        return new ResponseUtil("200",cus.toString() +" Successfully Added..",null);
     }
 
     @PutMapping
     public ResponseUtil updateCustomer(@RequestBody CustomerDTO cus){
         System.out.println(cus.toString());
-        return new ResponseUtil("200",cus.toString()+" Updated",null);
+        return new ResponseUtil("200",cus.toString()+" Successfully Updated..",null);
     }
 
     @DeleteMapping(params = "id")
     public ResponseUtil deleteCustomer(String id){
         System.out.println(id);
-        return new ResponseUtil("200",id+" Deleted.",null);
+        return new ResponseUtil("200",id+" Successfully Deleted.!!!",null);
     }
 
 
