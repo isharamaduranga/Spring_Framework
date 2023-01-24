@@ -12,6 +12,7 @@ import lk.ijse.spring.dto.ItemDTO;
 import lk.ijse.spring.entity.Item;
 import lk.ijse.spring.repo.ItemRepo;
 import lk.ijse.spring.util.ResponseUtil;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,8 @@ public class ItemController {
 
     @Autowired
     ItemRepo repo;
+    @Autowired
+    ModelMapper mapper;
 
     @GetMapping
     public ResponseUtil getAllItem(){
@@ -34,14 +37,14 @@ public class ItemController {
 
     @PostMapping
     public ResponseUtil saveItem(@ModelAttribute ItemDTO itm){
-        Item item = new Item(itm.getCode(), itm.getDescription(), itm.getQtyOnHand(), itm.getUnitPrice());
+        Item item = mapper.map(itm, Item.class);
         repo.save(item);
         return new ResponseUtil("200",itm.toString() +" Successfully Added..",null);
     }
 
     @PutMapping
     public ResponseUtil updateItem(@RequestBody ItemDTO itm){
-        Item item = new Item(itm.getCode(), itm.getDescription(), itm.getQtyOnHand(), itm.getUnitPrice());
+        Item item = mapper.map(itm, Item.class);
         repo.save(item);
         return new ResponseUtil("200",itm.toString()+" Successfully Updated..",null);
     }

@@ -13,6 +13,7 @@ import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.util.ResponseUtil;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,8 @@ public class CustomerController {
 
     @Autowired
     CustomerRepo repo;
+    @Autowired
+    ModelMapper mapper;
 
     @GetMapping
     public ResponseUtil getAllCustomer(){
@@ -35,14 +38,14 @@ public class CustomerController {
 
     @PostMapping
     public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO cus){
-        Customer customer = new Customer(cus.getId(), cus.getName(), cus.getAddress(), cus.getSalary());
+        Customer customer = mapper.map(cus, Customer.class);
         repo.save(customer);
         return new ResponseUtil("200",cus.toString() +" Successfully Added..",null);
     }
 
     @PutMapping
     public ResponseUtil updateCustomer(@RequestBody CustomerDTO cus){
-        Customer customer = new Customer(cus.getId(), cus.getName(), cus.getAddress(), cus.getSalary());
+        Customer customer = mapper.map(cus, Customer.class);
         repo.save(customer);
         return new ResponseUtil("200",cus.toString()+" Successfully Updated..",null);
     }
