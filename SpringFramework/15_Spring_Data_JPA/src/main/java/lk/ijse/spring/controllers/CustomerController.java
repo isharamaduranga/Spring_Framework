@@ -10,15 +10,12 @@ package lk.ijse.spring.controllers;
 
 
 import lk.ijse.spring.dto.CustomerDTO;
-import lk.ijse.spring.entity.Customer;
-import lk.ijse.spring.repo.CustomerRepo;
+import lk.ijse.spring.service.CustomerServiceImpl;
 import lk.ijse.spring.util.ResponseUtil;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
@@ -26,36 +23,31 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
-    CustomerRepo repo;
-    @Autowired
-    ModelMapper mapper;
+    CustomerServiceImpl service;
 
     @GetMapping
-    public ResponseUtil getAllCustomer(){
-        List<Customer> all = repo.findAll();
-        return new ResponseUtil("200"," Success.",all);
+    public ResponseUtil getAllCustomer() {
+        ArrayList<CustomerDTO> allCustomers = service.getAllCustomers();
+        return new ResponseUtil("200", " Success.", allCustomers);
     }
 
     @PostMapping
-    public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO cus){
-        Customer customer = mapper.map(cus, Customer.class);
-        repo.save(customer);
-        return new ResponseUtil("200",cus.toString() +" Successfully Added..",null);
+    public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO cus) {
+        service.addCustomer(cus);
+        return new ResponseUtil("200", cus.toString() + " Successfully Added..", null);
     }
 
     @PutMapping
-    public ResponseUtil updateCustomer(@RequestBody CustomerDTO cus){
-        Customer customer = mapper.map(cus, Customer.class);
-        repo.save(customer);
-        return new ResponseUtil("200",cus.toString()+" Successfully Updated..",null);
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO cus) {
+        service.updateCustomer(cus);
+        return new ResponseUtil("200", cus.toString() + " Successfully Updated..", null);
     }
 
     @DeleteMapping(params = "id")
-    public ResponseUtil deleteCustomer(String id){
-        repo.deleteById(id);
-        return new ResponseUtil("200",id+" Successfully Deleted.!!!",null);
+    public ResponseUtil deleteCustomer(String id) {
+        service.deleteCustomer(id);
+        return new ResponseUtil("200", id + " Successfully Deleted.!!!", null);
     }
-
 
 
 }
