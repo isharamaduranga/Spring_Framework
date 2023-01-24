@@ -9,42 +9,46 @@
 package lk.ijse.spring.controllers;
 
 import lk.ijse.spring.dto.ItemDTO;
+import lk.ijse.spring.entity.Item;
+import lk.ijse.spring.repo.ItemRepo;
 import lk.ijse.spring.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/item")
 @CrossOrigin
 public class ItemController {
 
+    @Autowired
+    ItemRepo repo;
+
     @GetMapping
     public ResponseUtil getAllItem(){
-        ArrayList<ItemDTO> allItems= new ArrayList<>();
-        allItems.add(new ItemDTO("I00-001","NOODLES",500,720));
-        allItems.add(new ItemDTO("I00-002","PASTA",600,480));
-        allItems.add(new ItemDTO("I00-003","MILK",1500,1220));
-        allItems.add(new ItemDTO("I00-004","DHALL",1740,350));
-
-        return new ResponseUtil("200"," Success.",allItems);
+        List<Item> itemList = repo.findAll();
+        return new ResponseUtil("200"," Success.",itemList);
     }
 
     @PostMapping
     public ResponseUtil saveItem(@ModelAttribute ItemDTO itm){
-        System.out.println(itm.toString());
+        Item item = new Item(itm.getCode(), itm.getDescription(), itm.getQtyOnHand(), itm.getUnitPrice());
+        repo.save(item);
         return new ResponseUtil("200",itm.toString() +" Successfully Added..",null);
     }
 
     @PutMapping
     public ResponseUtil updateItem(@RequestBody ItemDTO itm){
-        System.out.println(itm.toString());
+        Item item = new Item(itm.getCode(), itm.getDescription(), itm.getQtyOnHand(), itm.getUnitPrice());
+        repo.save(item);
         return new ResponseUtil("200",itm.toString()+" Successfully Updated..",null);
     }
 
     @DeleteMapping(params = "code")
     public ResponseUtil deleteItem(String code){
-        System.out.println(code);
+        repo.deleteById(code);
         return new ResponseUtil("200",code+" Successfully Deleted.!!",null);
     }
 }
