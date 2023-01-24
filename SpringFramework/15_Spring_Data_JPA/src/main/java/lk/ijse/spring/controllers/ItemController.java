@@ -23,10 +23,6 @@ import java.util.ArrayList;
 @CrossOrigin
 public class ItemController {
 
-    @Autowired
-    ItemRepo repo;
-    @Autowired
-    ModelMapper mapper;
 
     @Autowired
     ItemServiceImpl service;

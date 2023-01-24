@@ -22,27 +22,30 @@ import java.util.ArrayList;
 
 @Service
 @Transactional
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService {
     @Autowired
     CustomerRepo repo;
     @Autowired
     ModelMapper mapper;
 
+    @Override
     public void addCustomer(CustomerDTO cus) {
         repo.save(mapper.map(cus, Customer.class));
     }
 
+    @Override
     public void deleteCustomer(String id) {
         repo.deleteById(id);
     }
 
+    @Override
     public void updateCustomer(CustomerDTO cus) {
         repo.save(mapper.map(cus, Customer.class));
     }
 
+    @Override
     public ArrayList<CustomerDTO> getAllCustomers() {
-        return mapper.map(repo.findAll(), new TypeToken<ArrayList<CustomerDTO>>() {
+         return mapper.map(repo.findAll(), new TypeToken<ArrayList<CustomerDTO>>() {
         }.getType());
     }
-
 }
