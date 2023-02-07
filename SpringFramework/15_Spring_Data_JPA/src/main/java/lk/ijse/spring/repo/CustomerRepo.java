@@ -23,7 +23,16 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
 
 
     /** ==================================  */
+    //CountBy data methods return by Long type data...
+    Long countByName (String name);
 
-    Long countByName (String mname);
+    // If a query start with existBy then you should return boolean type data...
+    Boolean  existsByAddress(String address);
+
+
+    void deleteByName(String name);
+
+
+
 
 }

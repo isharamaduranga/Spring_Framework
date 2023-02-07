@@ -9,12 +9,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebRootConfig.class})
 @ExtendWith(SpringExtension.class)
+@Transactional
 class CustomerRepoTest {
 
     @Autowired
@@ -59,10 +61,23 @@ class CustomerRepoTest {
 
     }
 
+
     @Test
     public void testFour() {
         Long count = customerRepo.countByName("Kalindu");
         System.out.println(count);
+    }
+
+    @Test
+    public void testFive() {
+        Boolean existsByAddress = customerRepo.existsByAddress("Mathara");
+        System.out.println(existsByAddress);
+    }
+
+    @Test
+    public void testSix() {
+        customerRepo.deleteByName("smith");
+
     }
 
 }
