@@ -71,8 +71,13 @@ class CustomerRepoTest {
 
     @Test
     public void testFive() {
-        Boolean existsByAddress = customerRepo.existsByAddress("Mathara");
-        System.out.println(existsByAddress);
+        Boolean existsByAddress1 = customerRepo.existsByAddress("Mathara");
+        assertTrue(existsByAddress1);
+
+        Boolean existsByAddress2 = customerRepo.existsByAddress("jaffna");
+        assertFalse(existsByAddress2);
+
+        System.out.println(existsByAddress1 +" "+ existsByAddress2);
     }
 
     @Test
