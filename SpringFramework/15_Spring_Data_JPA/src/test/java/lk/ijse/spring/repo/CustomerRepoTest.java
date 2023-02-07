@@ -12,19 +12,18 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import javax.transaction.Transactional;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebRootConfig.class})
 @ExtendWith(SpringExtension.class)
-@Transactional
+@Transactional //Stop submitting actual data in database
 class CustomerRepoTest {
 
     @Autowired
     CustomerRepo customerRepo;
 
     @Test
-    public void addCustomer(){
-        Customer customer = new Customer("C00-004","Kalindu","Ruwanwella",12000);
+    public void addCustomer() {
+        Customer customer = new Customer("C00-004", "Kalindu", "Ruwanwella", 12000);
         customerRepo.save(customer);
     }
 
@@ -38,21 +37,21 @@ class CustomerRepoTest {
 
     @Test
     public void testTwo() {
-        Customer data = customerRepo.findByNameAndAddress("Kalindu","Ruwanwella");
+        Customer data = customerRepo.findByNameAndAddress("Kalindu", "Ruwanwella");
         System.out.println(data.toString());
     }
 
     @Test
     public void testThree() {
 
-      //  Customer data1 = customerRepo.findByName("Kalindu");
+        //  Customer data1 = customerRepo.findByName("Kalindu");
         Customer data2 = customerRepo.readByName("Kalindu");
         Customer data3 = customerRepo.getByName("Kalindu");
         Customer data4 = customerRepo.queryByName("Kalindu");
         Customer data5 = customerRepo.searchByName("Kalindu");
         Customer data6 = customerRepo.streamByName("Kalindu");
 
-       // System.out.println(data1.toString());
+        // System.out.println(data1.toString());
         System.out.println(data2.toString());
         System.out.println(data3.toString());
         System.out.println(data4.toString());
@@ -79,5 +78,37 @@ class CustomerRepoTest {
         customerRepo.deleteByName("smith");
 
     }
+
+
+    @Test
+    public void testSeven() {
+        List<Customer> customers = customerRepo.testOneNativeQuery();
+        for (Customer customer : customers) {
+            System.out.println(customer.toString());
+        }
+
+        System.out.println(" ******************************************** ");
+
+        List<Customer> customers1 = customerRepo.testTwoNativeQueryWithName();
+        System.out.println(customers1.toString());
+    }
+
+
+
+    @Test
+    public void testEight() {
+
+        List<Customer> customer = customerRepo.testTwoNativeQueryWithNameParam1("smith","kandy City");
+        System.out.println(customer.toString());
+
+        System.out.println(" -------------------------------------------------- ");
+
+        List<Customer> customer2 = customerRepo.testTwoNativeQueryWithNameParam2("Ishara Maduranga","Mathara");
+        System.out.println(customer2.toString());
+
+
+
+    }
+
 
 }
