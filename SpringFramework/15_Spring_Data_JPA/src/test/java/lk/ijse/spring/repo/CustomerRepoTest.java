@@ -46,19 +46,23 @@ class CustomerRepoTest {
     @Test
     public void testThree() {
 
-        //  Customer data1 = customerRepo.findByName("Kalindu");
-        Customer data2 = customerRepo.readByName("Kalindu");
-        Customer data3 = customerRepo.getByName("Kalindu");
-        Customer data4 = customerRepo.queryByName("Kalindu");
-        Customer data5 = customerRepo.searchByName("Kalindu");
-        Customer data6 = customerRepo.streamByName("Kalindu");
+       /* Customer data1 = customerRepo.findByName("Kalindu");*/
+        Customer data2 = customerRepo.readByName("smith");
+        Customer data3 = customerRepo.getByName("smith");
+        Customer data4 = customerRepo.queryByName("smith");
+        Customer data5 = customerRepo.searchByName("smith");
+        Customer data6 = customerRepo.streamByName("smith_WRONG");
 
-        // System.out.println(data1.toString());
+      //  assertNotNull(data6); //it is error this entry is already null Because(smith_WRONG entry is not have database)
+
+        assertNull(data6); // It is true  smith_WRONG is already null value
+
+       // System.out.println(data1.toString());
         System.out.println(data2.toString());
         System.out.println(data3.toString());
         System.out.println(data4.toString());
         System.out.println(data5.toString());
-        System.out.println(data6.toString());
+        //System.out.println(data6.toString());
 
     }
 
