@@ -38,7 +38,7 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
     // Query (Native , SQL , JPQL ,HQL)
 
                 /** ===================== NATIVE QUERY ========================*/
-
+/*
     @Query(value = "select * from Customer",nativeQuery = true)
     List<Customer> testOneNativeQuery();
 
@@ -58,17 +58,23 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
     List<Customer> testTwoNativeQueryWithNameParam2(@Param("n") String n, @Param("a ") String a);
 
 
-    /** ===================== JPQL QUERY ========================*/
+
+    */
+/** ===================== JPQL QUERY ========================*//*
+
 
     @Query(value = "select u from Customer u where u.name=:name")
     Customer jpqlTestQuery(@Param("name")String name);
 
 
 
-    /** ===================== HQL QUERY ========================*/
+    */
+/** ===================== HQL QUERY ========================*//*
+
 
     @Query(value = "from Customer c where c.name=:name")
     Customer hqlTestQuery(@Param("name")String name);
 
+*/
 
 }

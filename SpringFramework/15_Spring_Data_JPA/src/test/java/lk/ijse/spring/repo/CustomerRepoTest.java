@@ -1,6 +1,5 @@
 package lk.ijse.spring.repo;
 
-import lk.ijse.spring.config.WebAppConfig;
 import lk.ijse.spring.config.WebRootConfig;
 import lk.ijse.spring.entity.Customer;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @WebAppConfiguration
-@ContextConfiguration(classes = {WebRootConfig.class, WebAppConfig.class})
+@ContextConfiguration(classes = {WebRootConfig.class})
 @ExtendWith(SpringExtension.class)
 @Transactional //Stop submitting actual data in database
 class CustomerRepoTest {
@@ -80,7 +81,7 @@ class CustomerRepoTest {
 
     }
 
-
+  /*
     @Test
     public void testSeven() {
         List<Customer> customers = customerRepo.testOneNativeQuery();
@@ -96,7 +97,7 @@ class CustomerRepoTest {
 
 
 
-    @Test
+ @Test
     public void testEight() {
 
         List<Customer> customer = customerRepo.testTwoNativeQueryWithNameParam1("smith","kandy City");
@@ -107,9 +108,9 @@ class CustomerRepoTest {
         List<Customer> customer2 = customerRepo.testTwoNativeQueryWithNameParam2("Ishara Maduranga","Mathara");
         System.out.println(customer2.toString());
 
-    }
+    }*/
 
-    @Test
+/*    @Test
     public void testTen() {
         Customer c1 = customerRepo.jpqlTestQuery("smith");
         System.out.println(c1.toString());
@@ -119,7 +120,7 @@ class CustomerRepoTest {
         Customer c2 = customerRepo.hqlTestQuery("smith");
         System.out.println(c2.toString());
 
-    }
+    }*/
 
 
 }
