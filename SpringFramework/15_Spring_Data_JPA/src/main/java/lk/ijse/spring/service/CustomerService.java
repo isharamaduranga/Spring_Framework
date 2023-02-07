@@ -13,4 +13,6 @@ public interface CustomerService {
     void updateCustomer(CustomerDTO cus);
 
     ArrayList<CustomerDTO> getAllCustomers();
+
+    public CustomerDTO searchCustomerByName(String name);
 }

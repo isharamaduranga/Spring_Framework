@@ -49,5 +49,12 @@ public class CustomerController {
         return new ResponseUtil("200", id + " Successfully Deleted.!!!", null);
     }
 
+    @GetMapping(params = "name")
+    public ResponseUtil searchCustomerByName(String name) {
+        CustomerDTO customer = service.searchCustomerByName(name);
+        return new ResponseUtil("200", " Success your search ...", customer);
+    }
+
+
 
 }

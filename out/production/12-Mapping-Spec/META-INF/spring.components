@@ -1,0 +1,13 @@
+lk.ijse.spring.config.WebAppConfig=org.springframework.stereotype.Component
+lk.ijse.spring.config.WebRootConfig=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerEight=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerEleven=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerFive=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerFour=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerNine=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerOne=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerSeven=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerSix=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerTen=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerThree=org.springframework.stereotype.Component
+lk.ijse.spring.controller.ControllerTwo=org.springframework.stereotype.Component
