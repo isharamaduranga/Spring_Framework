@@ -1,5 +1,6 @@
 package lk.ijse.spring.repo;
 
+import lk.ijse.spring.config.WebAppConfig;
 import lk.ijse.spring.config.WebRootConfig;
 import lk.ijse.spring.entity.Customer;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @WebAppConfiguration
-@ContextConfiguration(classes = {WebRootConfig.class})
+@ContextConfiguration(classes = {WebRootConfig.class, WebAppConfig.class})
 @ExtendWith(SpringExtension.class)
 @Transactional //Stop submitting actual data in database
 class CustomerRepoTest {
@@ -106,7 +107,17 @@ class CustomerRepoTest {
         List<Customer> customer2 = customerRepo.testTwoNativeQueryWithNameParam2("Ishara Maduranga","Mathara");
         System.out.println(customer2.toString());
 
+    }
 
+    @Test
+    public void testTen() {
+        Customer c1 = customerRepo.jpqlTestQuery("smith");
+        System.out.println(c1.toString());
+
+        System.out.println(" -------------------------------------------------- ");
+
+        Customer c2 = customerRepo.hqlTestQuery("smith");
+        System.out.println(c2.toString());
 
     }
 
