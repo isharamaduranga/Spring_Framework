@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <!--link Bootstrap Framework-->
-    <link rel="stylesheet" href="assests/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/pos_styles.css">
+    <link href="assests/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/pos_styles.css" rel="stylesheet">
     <link href="icons/css/all.min.css" rel="stylesheet">
 
 </head>
@@ -16,8 +16,8 @@
     <nav class="navbar navbar-expand-lg bg-primary navColor">
         <div class="container-fluid">
             <a class="navbar-brand text-white fw-bold" href="index.html">
-                <img src="assests/images/logo.jpg" alt="Logo" width="40" height="40"
-                     class="d-inline-block align-text-center">
+                <img alt="Logo" class="d-inline-block align-text-center" height="40" src="assests/images/logo.jpg"
+                     width="40">
                 POS-SYSTEM
             </a>
             <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
@@ -26,12 +26,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul id="ul-list" class="navbar-nav  me-auto mb-2 mb-lg-0 text-white">
+                <ul class="navbar-nav  me-auto mb-2 mb-lg-0 text-white" id="ul-list">
                     <li class="nav-item fs-5 ">
                         <a aria-current="page" class="nav-link text-white" href="index.html" id="linkHome">Home</a>
                     </li>
                     <li class="nav-item fs-5">
-                        <a id="#linkCustomer" class="nav-link text-white table-hover " href="customer_form.html">Customers</a>
+                        <a class="nav-link text-white table-hover " href="customer_form.html" id="#linkCustomer">Customers</a>
                     </li>
                     <li class="nav-item fs-5">
                         <a class="nav-link text-white" href="item_form.html" id="linkItem">Items</a>
@@ -48,7 +48,7 @@
     </nav>
 </header>
 
-<section id="order" style="height: 85vh" class="bg-white">
+<section class="bg-white" id="order" style="height: 85vh">
     <section class="container-fluid mt-2">
         <div style="height: 8px; text-align: center">
             <h2 class="bg-secondary border border-2 border-secondary text-light"
@@ -70,7 +70,7 @@
                                     Order ID:
                                     <form>
                                         <input class="form-control text-primary text-lg-center"
-                                               style="font-weight: bold " id="txtOrderId" type="button">
+                                               id="txtOrderId" style="font-weight: bold " type="text">
                                         <span class="control-error_item" id="lblOrderID"></span>
                                     </form>
                                 </div>
@@ -247,54 +247,39 @@
         </div>
     </div>
 </section>
-
+<!--Import js for Cart.js-->
+<script src="model/cart.js"></script>
 
 <!--Import js for bootstrap-->
 <script src="assests/jquery/jquery-3.6.1.min.js"></script>
 <script src="assests/js/bootstrap.min.js"></script>
-<script src="model/cart.js"></script>
-<script>
 
-    let baseUrl = "http://localhost:8080/posbackend/";
+<script>
+    let baseURL = "http://localhost:8080/15_Spring_Data_JPA_war/";
 
     /** Functions of running when start the  program...*/
-    loadAllItems();
-    loadAllCustomers();
-    setDates();
-    searchCustomer();
     generateOrderID();
+    loadAllCustomers();
+    loadAllItems();
+    setDates();
     $("#btnSubmitOrder").attr('disabled', true);
 
-    /** Define the Cart Array */
-    var cart = [];
 
-    /** Function of Load All Items with combobox */
-    function loadAllItems() {
-
-        $("#selectItemCode").append(`<option>Select Item</option>`);
-        $.ajax({
-            url: baseUrl + "item",
-            success: function (res) {
-                for (let c of res.data) {
-                    let code = c.code;
-                    $("#selectItemCode").append(`<option value="${code}">${code}</option>`);
-                }
-            },
-            error: function (error) {
-                let message = JSON.parse(error.responseText).message;
-                alert(message);
-            }
-        });
+    /** Function of Set Current date   */
+    function setDates() {
+        let date = new Date().toJSON().split("T")[0];
+        $("#txtDate").val(date);
     }
 
-    /** Function of Load All Items with combobox */
+
+    /**Function of Load all customer Ids Records In combo  */
     function loadAllCustomers() {
+        $("#selectCusID").empty();
         $("#selectCusID").append(`<option>Select Customer</option>`);
         $.ajax({
-            url: baseUrl + "customer",
-            dataType: "json",
+            url: baseURL + "customer",
+            method: "get",
             success: function (resp) {
-                console.log(resp);
                 for (let cus of resp.data) {
                     $("#selectCusID").append(`<option value="${cus.id}">${cus.id}</option>`);
                 }
@@ -302,306 +287,90 @@
         });
     }
 
-    /** Function of Load Current date */
-    function setDates() {
-        let date = new Date().toJSON().split("T")[0];
-        $("#txtDate").val(date);
-    }
 
-    /** Function of search  customer by Customer Id */
-    function searchCustomer(cusID) {
-        let response = "";
+    /**Function of Load all Item codes Records In combo  */
+    function loadAllItems() {
+        $("#selectItemCode").empty();
+        $("#selectItemCode").append(`<option>Select Item</option>`);
         $.ajax({
-            url: baseUrl + "customer",
-            dataType: "json",
-            async: false,
-            success: function (resp) {
-                response = resp.data.filter((c) => {
-                    return c.id == cusID;
-                });
-            }
-        });
-        return response;
-    }
-
-    /** Function of search Items by Item Code */
-    function searchItem(code) {
-        let response = "";
-        $.ajax({
-            url: baseUrl + "item",
-            dataType: "json",
-            async: false,
-            success: function (resp) {
-                response = resp.data.filter((i) => {
-                    return i.code == code;
-                });
-            }
-        });
-        return response;
-        console.log(response);
-    }
-
-    /** Function of Set Customer Data to fields after the Search */
-    $("#selectCusID").change(function () {
-        let cusID = $("#selectCusID").val();
-        $("#orderCustomerID").val(cusID);
-        let res = searchCustomer(cusID);
-        if (res.length > 0) {
-            $("#orderCustomerName").val(res[0].name);
-            $("#orderCustomerSalary").val(res[0].salary);
-            $("#orderCustomerAddress").val(res[0].address);
-        }
-        textFieldColorChange_customer();
-    });
-
-    /** Function of Set Items Data to fields after the Search */
-    $("#selectItemCode").change(function () {
-        let code = $("#selectItemCode").val();
-        $("#txtItemCode").val(code);
-        let res = searchItem(code);
-        if (res.length > 0) {
-            $("#txtItemDescription").val(res[0].description);
-            $("#txtItemPrice").val(res[0].unitPrice);
-            $("#txtQTYOnHand").val(res[0].qtyOnHand);
-        }
-        textFieldColorChange_Item();
-    });
-
-    /** Function of Add To Table(Cart) Input data */
-    $("#btnAddToTable").click(function () {
-        let qtyOnHand = parseInt($("#txtQTYOnHand").val());
-        let orderQty = parseInt($("#txtQty").val());
-
-        if ($("#txtQty").val() != "") {
-
-            if (qtyOnHand < orderQty) {
-                alert("This Item Not Available for this Quantity !!!")
-                $("#txtQty").val("")
-            } else {
-                updateQty();
-                addToCart();
-                loadAllCart();
-                calculateTotal();
-            }
-        } else {
-            alert("please Enter Order Quantity..");
-        }
-    });
-
-    /** function of add To Cart */
-    function addToCart() {
-
-        let code = $("#selectItemCode").val();
-        let description = $("#txtItemDescription").val();
-        let itemPrice = $("#txtItemPrice").val();
-        let buyQty = $("#txtQty").val();
-        let total = parseFloat(itemPrice) * parseFloat(buyQty);
-
-        for (let cartElement of cart) {
-            if (cartElement.getCode() == code) {
-                var newQty = +cartElement.getBuyQty() + +buyQty;
-                let newTotal = itemPrice * newQty;
-
-                cartElement.setBuyQty(newQty);
-                cartElement.setTotal(newTotal);
-                return;
-            }
-        }
-        let cartOrder = new cartModel(code, description, itemPrice, buyQty, total);
-        cart.push(cartOrder);
-
-        $("#txtBalance,#txtCash,#txtDiscount").val("");
-    }
-
-    /** function of load all data (included to search same oid and updated) */
-    function loadAllCart() {
-        $("#orderTable").empty();
-        for (let cartItm of cart) {
-
-            var cartRow = `<tr><td>${cartItm.getCode()}</td><td>${cartItm.getDescription()}</td><td>${cartItm.getItemPrice()}</td><td>${cartItm.getBuyQty()}</td><td>${cartItm.getTotal()}</td></tr>`
-
-            $("#orderTable").append(cartRow);
-        }
-    }
-
-    /** function of find same order id and when add data & updated qty with already added oder..*/
-    function updateQty() {
-        let qtyOnHand = $('#txtQTYOnHand').val();
-        let order_qty = $('#txtQty').val();
-        let newQtyValue = qtyOnHand - order_qty;
-
-        $("#itemTable").empty();
-        $.ajax({
-            url: baseUrl + "item",
-            dataType: "json",
+            url: baseURL + "item",
+            method: "get",
             success: function (resp) {
                 for (let itm of resp.data) {
-
-                    if ($("#selectItemCode").val() === itm.code) {
-
-                        setItemQty(newQtyValue);
-                    }
+                    $("#selectItemCode").append(`<option value="${itm.code}">${itm.code}</option>`);
                 }
             }
         });
     }
 
-    /**  Function of send to request to updated new quantity and set updated quantity related input field  */
-    function setItemQty(newQty) {
-        let itemCode = $('#selectItemCode').val();
-        let itemName = $('#txtItemDescription').val();
-        $("#txtQTYOnHand").val(newQty);
-        let itemQty = $("#txtQTYOnHand").val();
-        let itemPrice = $('#txtItemPrice').val();
-        //create js object for send to json object
-        let item = {
-            code: itemCode,
-            description: itemName,
-            qtyOnHand: itemQty,
-            unitPrice: itemPrice
-        }
+
+    /** Function of search  customer by Customer Id */
+    function searchCustomer(cusId) {
+        let response = "";
         $.ajax({
-            url: baseUrl + "item",
-            method: "put",
-            contentType: "application/json",
-            data: JSON.stringify(item),
+            url: baseURL + "customer",
             dataType: "json",
+            method: "get",
+            async: false,
             success: function (resp) {
-            },
-            error: function (error) {
-                alert(JSON.parse(error.responseText).message);
+                response = resp.data.filter((c) => {
+                    return c.id == cusId;
+                });
             }
         });
+        return response;
     }
 
-    /** function of txtCash button keyup event logic... */
-    $('#txtCash').on('keyup', function (event) {
 
-        if (event.key == "Enter") {
-            event.preventDefault();
+    /** Function of Set Item Data to fields after the Search */
+    $("#selectItemCode").change(function () {
+        let itmCode = $("#selectItemCode").val();
+        $("#txtItemCode").val(itmCode);
+        let resp = searchItem(itmCode);
+        if (resp.length > 0) {
+            $("#txtItemDescription").val(resp[0].description);
+            $("#txtItemPrice").val(resp[0].unitPrice);
+            $("#txtQTYOnHand").val(resp[0].qtyOnHand);
         }
-
-        let cash = parseFloat($('#txtCash').val());
-        let tot = $('#total>span').text();
-
-        if (cash > tot) {
-            let total = parseFloat($('#subtot').text());
-            let balance = cash - total;
-
-            $('#txtBalance').val(balance);
-
-            Span_BorderCssChange_Default($('#txtCash'), "");
-
-            $("#btnSubmitOrder").attr('disabled', false);
-        } else {
-
-            Span_BorderCssChange_Error($('#txtCash'), "Insufficient Credit Balance");
-
-        }
-    });
-
-    /** function of Calculate Total of cart items.. */
-    function calculateTotal() {
-        let tot = 0;
-        $('#orderTable>tr').each(function () {
-            tot = tot + parseFloat($($(this).children().get(4)).text());
-            $('#total>span').text(tot).append('.00');
-
-            if ($("#txtDiscount").val() === "") {
-
-                $('#subtotal>span').text(tot);
-            }
-        });
-        tempTot = tot;
-    }
-
-    /** function of Calculate Discount of cart items.. */
-    $('#txtDiscount').on('keyup', function () {
-        if ($("#txtDiscount").val() === "") {
-            $('#subtotal>span').text('0.00');
-        } else {
-            let tot = parseFloat(tempTot);
-            let dis = tot / 100 * parseFloat($("#txtDiscount").val());
-
-            $('#subtotal>span').text(tot - dis);
-
-            let cash = parseInt($("#txtCash").val());
-            let subTot = parseInt($("#subtot").text());
-            $("#txtBalance").val(cash - subTot);
-        }
-    });
-
-/*
-    /!** function of txtQty button keyup,keydown event logic... *!/
-    $("#txtQty").on('keyup keydown', function () {
-        let qhd = $("#txtQTYOnHand").val();
-        let typeQty = $("#txtQty").val();
-        if (typeQty > qhd) {
-
-            Span_BorderCssChange_Error($('#txtQty'), "Please  Enter a Amount lower than: " + typeQty + "");
-        } else {
-            Span_BorderCssChange_Default($('#txtQty'), "");
-        }
+        textFieldColorChange_Item();
     })
-*/
 
-    /** function of Purchase Order logics. */
-    $("#btnSubmitOrder").click(function () {
-        let orderID = $("#txtOrderId").val();
-        let customerID = $("#orderCustomerID").val();
-        let orderDate = $("#txtDate").val();
-        let orderD = getItemDetails();
 
-        let ob = {
-            oid: orderID,
-            date: orderDate,
-            cusID: customerID,
-            orderDetails: orderD
-        }
-
-        //send request
+    /** Function of search  Item by Item code */
+    function searchItem(itmCode) {
+        let response = "";
         $.ajax({
-            url: baseUrl + "purchase",
-            method: "post",
+            url: baseURL + "item",
+            method: "get",
             dataType: "json",
-            data: JSON.stringify(ob),
-            contentType: "application/json",
+            async: false,
+
             success: function (resp) {
-
-                alert(resp.message);
-                //call generate order id
-                generateOrderID();
-
-                //functionalities of clear cart details and clear cart array after the Purchase order
-                cart.splice(0, cart.length);
-                $('#orderTable').empty();
-                $("#btnSubmitOrder").attr('disabled', true);
-                $("#total>span,#subtot").text("00");
-                //load customer and items ids with combo box
-                loadAllCustomers();
-                loadAllItems();
-
-                $("#txtItemCode,#txtItemDescription,#txtQTYOnHand,#txtQty,#orderCustomerID,#orderCustomerAddress,#orderCustomerName,#orderCustomerSalary,#txtCash,#txtBalance,#txtDiscount").val("");
-            },
-            error: function (error) {
-                alert(JSON.parse(error.responseText).message);
+                response = resp.data.filter((i) => {
+                    return i.code == itmCode;
+                });
             }
         });
+        return response;
+    }
 
+
+    /** Function of Set Customer Data to fields after the Search */
+    $("#selectCusID").change(function () {
+        let cusId = $("#selectCusID").val();
+        $("#orderCustomerID").val(cusId);
+        let response = searchCustomer(cusId);
+
+        if (response.length > 0) {
+            $("#orderCustomerName").val(response[0].name);
+            $("#orderCustomerSalary").val(response[0].salary);
+            $("#orderCustomerAddress").val(response[0].address);
+
+            console.log(response);
+        }
+        textFieldColorChange_customer();
     });
 
-    /** function of get Item Details... */
-    function getItemDetails() {
-        let rows = $("#orderTable").children().length;
-        var array = [];
-        for (let i = 0; i < rows; i++) {
-            let itCode = $("#orderTable").children().eq(i).children(":eq(0)").text();
-            let itQty = $("#orderTable").children().eq(i).children(":eq(3)").text();
-            let itPrice = $("#orderTable").children().eq(i).children(":eq(2)").text();
-            array.push({code: itCode, qty: itQty, price: itPrice});
-        }
-        return array;
-    }
 
     /** function of change Colors with customer fields . */
     function textFieldColorChange_customer() {
@@ -618,6 +387,7 @@
         }
     }
 
+
     /** function of change Colors with Item fields . */
     function textFieldColorChange_Item() {
         let itemCode = $('#selectItemCode').val();
@@ -632,11 +402,22 @@
         }
     }
 
+
+    /** function of clear Details passed that fields . */
+    function clearSetDetails(param1, param2, param3, param4) {
+        param1.val("");
+        param2.val("");
+        param3.val("");
+        param4.val("");
+    }
+
+
     /** Error css changer */
     function Span_BorderCssChange_Error(field, massage) {
         field.css('border', '2px solid red');
         field.parent().children('span').text(massage);
     }
+
 
     /** Default css changer */
     function Span_BorderCssChange_Default(field, massage) {
@@ -644,9 +425,12 @@
         field.parent().children('span').text(massage);
     }
 
+
+    /** function of qty change keyUp event */
     $('#txtQty').on('keyup', function () {
         orderQtyColourChange();
     });
+
 
     /** function of when change Colors with customer fields . */
     function orderQtyColourChange() {
@@ -661,19 +445,192 @@
         }
     }
 
-    /** function of clear Details passed that fields . */
-    function clearSetDetails(param1, param2, param3, param4) {
-        param1.val("");
-        param2.val("");
-        param3.val("");
-        param4.val("");
+
+    $("#btnAddToTable").click(function () {
+        let qtyOnHand = parseInt($("#txtQTYOnHand").val())
+        let buyQty = parseInt($("#txtQty").val());
+        if ($("#txtQty").val() != "") {
+
+            if (qtyOnHand < buyQty) {
+                alert("This Item Not Available for this Quantity !!!");
+                $("#txtQty").val()
+            } else {
+                addToCart();
+                loadAllCart();
+                calculateTotal();
+            }
+        } else {
+            alert("Please enter order Quantity ..!");
+        }
+    });
+
+
+
+    /** Define the Cart Array */
+    var cart = [];
+
+    /** function of add To Cart */
+    function addToCart() {
+        let code = $("#txtItemCode").val();
+        let description = $("#txtItemDescription").val();
+        let itmPrice = $("#txtItemPrice").val();
+        let buyQty = $("#txtQty").val();
+        let total = parseFloat(itmPrice) * parseFloat(buyQty);
+
+        for (let cartElement of cart) {
+            if (cartElement.getCode() == code) {
+                var newQty = +cartElement.getBuyQty() + parseInt(buyQty);
+                var newTot = itmPrice * newQty;
+
+                cartElement.setBuyQty(newQty);
+                cartElement.setTotal(newTot);
+                return;
+            }
+        }
+        let cartOrder = new cartModel(code, description, itmPrice, buyQty, total);
+        cart.push(cartOrder);
+
+        $("#txtBalance,#txtCash,#txtDiscount").val("");
+    }
+
+
+    /** function of load all data (included to search same oid and updated) */
+    function loadAllCart() {
+        $("#orderTable").empty();
+        for (let c of cart) {
+            $("#orderTable").append(`<tr><td>${c.getCode()}</td> <td>${c.getDescription()}</td> <td>${c.getItemPrice()}</td> <td>${c.getBuyQty()}</td> <td>${c.getTotal()}</td></tr>`)
+        }
+
+    }
+
+
+    /** function of Calculate Total of cart items.. */
+    function calculateTotal() {
+        let tot=0;
+    $("#orderTable>tr").each(function () {
+        tot+=parseFloat($($(this).children().get(4)).text());
+        $("#total>span").text(tot).append('.00');
+
+        if ($("#txtDiscount").val() === "") {
+            $('#subtotal>span').text(tot);
+        }
+    });
+        tempTot=tot;
+    }
+
+
+    /** function of Calculate Discount of cart items.. */
+    $("#txtDiscount").on('keyup',function () {
+        if ($("#txtDiscount").val() === "") {
+            $('#subtotal>span').text('0.00');
+        }else{
+            let tot = parseFloat(tempTot);
+            let dis = tot / 100 * parseFloat($("#txtDiscount").val());
+
+            $('#subtotal>span').text(tot - dis);
+
+            let cash = parseInt($("#txtCash").val());
+            let subTot = parseInt($("#subtot").text());
+            $("#txtBalance").val(cash - subTot);
+
+        }
+    });
+
+
+    /** function of txtCash button keyup event logic... */
+    $('#txtCash').on('keyup', function (event) {
+
+        if (event.key == "Enter") {
+            event.preventDefault();
+        }
+        let cash = parseFloat($('#txtCash').val());
+        let tot = $('#total>span').text();
+
+        if (cash > tot) {
+            let total = parseFloat($('#subtot').text());
+            let balance = cash - total;
+
+            $('#txtBalance').val(balance);
+
+            Span_BorderCssChange_Default($('#txtCash'), "");
+
+           $("#btnSubmitOrder").attr('disabled', false);
+        } else {
+
+            Span_BorderCssChange_Error($('#txtCash'), "Insufficient Credit Balance");
+
+        }
+    });
+
+
+    /** function of Purchase Order logics. */
+    $("#btnSubmitOrder").click(function () {
+
+        let orderID = $("#txtOrderId").val();
+        let orderDate = $("#txtDate").val();
+        let customerID = $("#orderCustomerID").val();
+        let orderD= getItemDetails(orderID);
+
+        let ob ={
+            oid:orderID,
+            date:orderDate,
+            cusID:customerID,
+            orderDetails:orderD
+        }
+        console.log(ob)
+
+        //send request to back end
+        $.ajax({
+            url:baseURL+"purchase",
+            method:"post",
+            dataType:"json",
+            data:JSON.stringify(ob),
+            contentType:"application/json",
+
+            success:function (resp) {
+                alert(resp.message);
+                //call generate order id
+                generateOrderID();
+
+                //functionalities of clear cart details and clear cart array after the Purchase order
+                cart.splice(0, cart.length);
+                $('#orderTable').empty();
+                $("#btnSubmitOrder").attr('disabled', true);
+                $("#total>span,#subtot").text("00");
+                //load customer and items ids with combo box
+                loadAllCustomers();
+                loadAllItems();
+
+                $("#txtItemCode,#txtItemDescription,#txtQTYOnHand,#txtQty,#orderCustomerID,#orderCustomerAddress,#orderCustomerName,#orderCustomerSalary,#txtCash,#txtBalance,#txtDiscount").val("");
+
+            },
+            error:function (error) {
+                alert(JSON.parse(error.responseText).message)
+            }
+        });
+    });
+
+    /** function of get Item Details... */
+    function getItemDetails(orderID) {
+        var detailsArray = [];
+
+        let rows = $("#orderTable").children().length;
+
+        for (let i = 0; i < rows; i++) {
+            let itmCode = $('#orderTable').children().eq(i).children(":eq(0)").text();
+            let itmPrice = $('#orderTable').children().eq(i).children(":eq(2)").text();
+            let itmQty = $('#orderTable').children().eq(i).children(":eq(3)").text();
+
+            detailsArray.push({oid:orderID,itemCode:itmCode,qty:itmQty,unitPrice:itmPrice})
+        }
+        return detailsArray;
     }
 
     /** function of Auto generate Order id with related field. */
     function generateOrderID() {
         try {
             $.ajax({
-                url: baseUrl + "OrderDetails",
+                url: baseURL + "purchase",
                 dataType: "json",
                 success: function (resp) {
                     for (let oder of resp.data) {
@@ -695,6 +652,8 @@
             $("#txtOrderId").val("OID-001");
         }
     }
+
+
 
 </script>
 </body>

@@ -111,27 +111,35 @@
 <script src="assests/jquery/jquery-3.6.1.min.js"></script>
 
 <script>
-    let baseUrl = "http://localhost:8080/posbackend/";
+    let baseURL = "http://localhost:8080/15_Spring_Data_JPA_war/";
+
     loadAllOrder();
 
-
+    /** Load All Orders Order Details into table  */
     function loadAllOrder() {
         $("#orderTables").empty();
         $("#orderDetailTable").empty();
         $.ajax({
-            url:baseUrl+"OrderDetails",
+            url:baseURL+"purchase",
             dataType:"json",
             success:function (resp) {
-                for (let oder of resp.data) {
-                    $("#orderTables").append("<tr> <td>"+oder.oid+"</td> <td>"+oder.date+"</td> <td>"+oder.customerID+"</td> </tr>");
+                console.log(resp.data)
 
+                for (let i = 0; i < resp.data.length; i++) {
+                    let order = resp.data[i];
+                    $("#orderTables").append("<tr> <td>"+order.oid+"</td> <td>"+order.date+"</td> <td>"+order.cusID+"</td> </tr>");
+
+                    for (let o of order.orderDetails) {
+                        $("#orderDetailTable").append("<tr><td>" + o.oid + "</td> <td>" + o.itemCode + "</td> <td>" + o.qty + "</td> <td>" + o.unitPrice + "</td> </tr>");
+                    }
                 }
-                for (let oDetails of resp.dataTwo) {
-                    $("#orderDetailTable").append("<tr><td>"+oDetails.orderID+"</td> <td>"+oDetails.itemCode+"</td> <td>"+oDetails.orderQty+"</td> <td>"+oDetails.price+"</td> </tr>");
-                }
+
             }
         });
     }
+
+
+
 </script>
 </body>
 </html>

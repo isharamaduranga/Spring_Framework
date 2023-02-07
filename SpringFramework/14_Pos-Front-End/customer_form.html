@@ -313,7 +313,39 @@
             $("#btnCustomerSave").attr('disabled', false);
         }
     }
+
+    /** BIND ROW CLICK EVENT FUNCTION ... */
+    function setData_Bind_Row_Events() {
+        $('#customerTable>tr').click(function () {
+            let id = $(this).children(":eq(0)").text();
+            let name = $(this).children(":eq(1)").text();
+            let address = $(this).children(":eq(2)").text();
+            let salary = $(this).children(":eq(3)").text();
+
+            /** setting table details values to text fields */
+            $('#txtCusId').val(id);
+            $('#txtCusName').val(name);
+            $('#txtCusAddress').val(address);
+            $('#txtCusSalary').val(salary);
+        });
+        /** Remove Selected Row when double clicked */
+        $("#customerTable>tr").on('dblclick', function () {
+            $(this).remove();
+        });
+    }
+
+    function clearTextFields() {
+        $('#txtCusId').val("");
+        $('#txtCusName').val("");
+        $('#txtCusAddress').val("");
+        $('#txtCusSalary').val("");
+    }
+    $("#btnClear").click(function () {
+        clearTextFields()
+    });
     /** =================================================================================================== */
+
+
 
 
     function saveCustomer() {
@@ -338,7 +370,7 @@
             }
         });
     }
-    
+
     $("#btnCustomerSave").click(function () {
         saveCustomer();
     });
@@ -393,9 +425,6 @@
         });
     });
 
-    $("#btnClear").click(function () {
-        clearTextFields()
-    });
 
    function loadAllCustomers(){
        $("#customerTable").empty()
@@ -414,32 +443,7 @@
     }
 
 
-    /** BIND ROW CLICK EVENT FUNCTION ... */
-    function setData_Bind_Row_Events() {
-        $('#customerTable>tr').click(function () {
-            let id = $(this).children(":eq(0)").text();
-            let name = $(this).children(":eq(1)").text();
-            let address = $(this).children(":eq(2)").text();
-            let salary = $(this).children(":eq(3)").text();
 
-            /** setting table details values to text fields */
-            $('#txtCusId').val(id);
-            $('#txtCusName').val(name);
-            $('#txtCusAddress').val(address);
-            $('#txtCusSalary').val(salary);
-        });
-        /** Remove Selected Row when double clicked */
-        $("#customerTable>tr").on('dblclick', function () {
-            $(this).remove();
-        });
-    }
-
-    function clearTextFields() {
-        $('#txtCusId').val("");
-        $('#txtCusName').val("");
-        $('#txtCusAddress').val("");
-        $('#txtCusSalary').val("");
-    }
 
 
 
